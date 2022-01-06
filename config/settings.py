@@ -28,9 +28,11 @@ INSTALLED_APPS = [
   # Third-party
   'rest_framework',
   'corsheaders', # used for making requests from subdomain
+  'django_filters', # use for search filters on api requests 
 
   # Local
   'users',
+  'one',
 ]
 
 MIDDLEWARE = [
@@ -114,3 +116,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.User'
+
+REST_FRAMEWORK = {
+  'DEFAULT_FILTER_BACKENDS': (
+    'django_filters.rest_framework.DjangoFilterBackend',
+  ),
+}
