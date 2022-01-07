@@ -51,6 +51,8 @@ class Statistics(models.Model):
   def __str__(self):
     return f'{self.school}'
 
+# TODO: Delete one of the duplicate models 
+# and associated serializer, view and url
 class Suggested(models.Model):
   school = models.ForeignKey(
     School,
