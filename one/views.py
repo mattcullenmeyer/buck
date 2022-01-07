@@ -12,10 +12,17 @@ class SchoolView(generics.RetrieveAPIView):
   serializer_class = serializers.SchoolSerializer
   lookup_field = 'slug'
 
-class SuggestedView(generics.RetrieveAPIView):
+class SuggestedView(generics.ListAPIView):
   queryset = models.Suggested.objects.all()
   serializer_class = serializers.SuggestedSerializer
-  lookup_field = 'slug'
+  filter_backends = [filters.SearchFilter]
+  search_fields = ['suggest__slug']
+
+class NearbyView(generics.ListAPIView):
+  queryset = models.Nearby.objects.all()
+  serializer_class = serializers.NearbySerializer
+  filter_backends = [filters.SearchFilter]
+  search_fields = ['target__slug']
 
 class AggregatedView(generics.RetrieveAPIView):
   queryset = models.School.objects.all()

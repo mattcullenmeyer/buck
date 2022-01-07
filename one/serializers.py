@@ -17,8 +17,18 @@ class StatisticsSerializer(serializers.ModelSerializer):
     fields = '__all__'
 
 class SuggestedSerializer(serializers.ModelSerializer):
+  school = SchoolSerializer()
+  
   class Meta:
     model = models.Suggested
+    fields = '__all__'
+
+class NearbySerializer(serializers.ModelSerializer):
+  # target = SchoolSerializer()
+  nearby = SchoolSerializer()
+  
+  class Meta:
+    model = models.Nearby
     fields = '__all__'
 
 class AggregatedSerializer(serializers.ModelSerializer):
