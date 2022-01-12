@@ -1,4 +1,4 @@
-from rest_framework import generics, filters
+from rest_framework import generics, filters, permissions
 from one import serializers, models
 
 class SchoolsView(generics.ListAPIView):
@@ -23,6 +23,11 @@ class NearbyView(generics.ListAPIView):
   serializer_class = serializers.NearbySerializer
   filter_backends = [filters.SearchFilter]
   search_fields = ['target__slug']
+
+class CreateNearby(generics.CreateAPIView):
+  queryset = models.Nearby.objects.all()
+  serializer_class = serializers.CreateNearbySerializer
+  permission_classes = [permissions.IsAdminUser]
 
 class AggregatedView(generics.RetrieveAPIView):
   queryset = models.School.objects.all()

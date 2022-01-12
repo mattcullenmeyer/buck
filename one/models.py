@@ -78,7 +78,8 @@ class Nearby(models.Model):
     on_delete=models.CASCADE,
     related_name='nearby',
   )
+  distance = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
 
   def __str__(self):
-    return f'{self.target} >> {self.nearby}'
+    return f'{self.target} >> {self.nearby} : {self.distance}'
   

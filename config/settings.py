@@ -27,6 +27,7 @@ INSTALLED_APPS = [
 
   # Third-party
   'rest_framework',
+  'rest_framework.authtoken',
   'corsheaders', # used for making requests from subdomain
   'django_filters', # use for search filters on api requests 
 
@@ -125,6 +126,12 @@ STATICFILES_FINDERS = [
 AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES': (
+    'rest_framework.authentication.TokenAuthentication',
+  ),
+  'DEFAULT_PERMISSION_CLASSES': (
+    'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+  ),
   'DEFAULT_FILTER_BACKENDS': (
     'django_filters.rest_framework.DjangoFilterBackend',
   ),

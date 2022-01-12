@@ -31,6 +31,11 @@ class NearbySerializer(serializers.ModelSerializer):
     model = models.Nearby
     fields = '__all__'
 
+class CreateNearbySerializer(serializers.ModelSerializer):
+  class Meta: 
+    model = models.Nearby
+    fields = '__all__'
+
 class AggregatedSerializer(serializers.ModelSerializer):
   ratings = RatingsSerializer()
   statistics = StatisticsSerializer()
