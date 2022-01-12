@@ -80,6 +80,9 @@ class Nearby(models.Model):
   )
   distance = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
 
+  class Meta:
+    ordering = ['distance']
+
   def __str__(self):
     return f'{self.target} >> {self.nearby} : {self.distance}'
   

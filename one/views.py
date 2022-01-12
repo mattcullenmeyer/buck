@@ -1,4 +1,4 @@
-from rest_framework import generics, filters, permissions
+from rest_framework import generics, filters, permissions, pagination
 from one import serializers, models
 
 class SchoolsView(generics.ListAPIView):
@@ -18,9 +18,15 @@ class SuggestedView(generics.ListAPIView):
   filter_backends = [filters.SearchFilter]
   search_fields = ['suggest__slug']
 
+class CustomPagination(pagination.CursorPagination):
+  page_size = 10
+  #cursor_query_param = 'page' # this should be 'cursor' but seems to break if not provided something
+  ordering = 'distance'
+
 class NearbyView(generics.ListAPIView):
   queryset = models.Nearby.objects.all()
   serializer_class = serializers.NearbySerializer
+  pagination_class = CustomPagination
   filter_backends = [filters.SearchFilter]
   search_fields = ['target__slug']
 
